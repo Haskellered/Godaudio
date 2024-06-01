@@ -5,34 +5,31 @@ var key: int
 var octave: int
 var accidental: int
 
+const notes = {
+	'c': 0,
+	'd': 2,
+	'e': 4,
+	'f': 5,
+	'g': 7,
+	'a': 9,
+	'b': 11
+}
+
+const octaves = [3, 4, 5]
+
 func _input(event):
 	
 	# Keys
 	
-	key = -1
-	if Input.is_action_pressed("note_c"):
-		key = 0
-	if Input.is_action_pressed("note_d"):
-		key = 2
-	if Input.is_action_pressed("note_e"):
-		key = 4
-	if Input.is_action_pressed("note_f"):
-		key = 5
-	if Input.is_action_pressed("note_g"):
-		key = 7
-	if Input.is_action_pressed("note_a"):
-		key = 9
-	if Input.is_action_pressed("note_b"):
-		key = 11
+	for n in notes.keys():
+		if Input.is_action_pressed("note_%s" % n):
+			key = notes[n]
 	
 	# Octaves
 	
-	if Input.is_action_pressed("octave_3"):
-		octave = 36
-	if Input.is_action_pressed("octave_4"):
-		octave = 48
-	if Input.is_action_pressed("octave_5"):
-		octave = 60
+	for o in octaves:
+		if Input.is_action_pressed("octave_%d" % o):
+			octave = o * 12
 		
 	# Accidentals
 	
