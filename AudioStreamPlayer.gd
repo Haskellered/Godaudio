@@ -21,6 +21,7 @@ func _input(event):
 	
 	# Keys
 	
+	key = -1
 	for n in notes.keys():
 		if Input.is_action_pressed("note_%s" % n):
 			key = notes[n]
