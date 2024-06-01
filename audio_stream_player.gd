@@ -24,6 +24,9 @@ const octaves := [3, 4, 5]
 
 func _input(event: InputEvent):
 	
+	if event is InputEventMouseMotion:
+		volume_db = linear_to_db(event.get_pressure())
+	
 	# Keys
 	
 	key = -1
@@ -49,8 +52,6 @@ func _input(event: InputEvent):
 		stop()
 	else:
 		note = key + octave + accidental
-#		if event.is_action(InputEventMouseMotion):
-#			event.
 		if !playing:
 			play()
 	
@@ -60,5 +61,5 @@ func _process(_delta: float):
 	mouse_x = get_viewport().get_mouse_position().x
 	viewport_size_x = get_viewport().size.x
 	pitch_scale = pow(2, float(note+((float(mouse_x)/(float(viewport_size_x)/pitch_bend_sensitivity))-pitch_bend_sensitivity/2)-57)/12)
-	print(pitch_scale)
-	
+	#print(pitch_scale)
+	print(volume_db)
