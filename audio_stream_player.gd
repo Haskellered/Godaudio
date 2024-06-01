@@ -5,7 +5,12 @@ var key: int
 var octave: int
 var accidental: int
 
-const notes = {
+var mouse_x: int
+var viewport_size_x: int
+
+var pitch_bend_sensitivity: float = 16
+
+const notes := {
 	'c': 0,
 	'd': 2,
 	'e': 4,
@@ -15,20 +20,20 @@ const notes = {
 	'b': 11
 }
 
-const octaves = [3, 4, 5]
+const octaves := [3, 4, 5]
 
-func _input(event):
+func _input(event: InputEvent):
 	
 	# Keys
 	
 	key = -1
-	for n in notes.keys():
+	for n: String in notes.keys():
 		if Input.is_action_pressed("note_%s" % n):
 			key = notes[n]
 	
 	# Octaves
 	
-	for o in octaves:
+	for o: int in octaves:
 		if Input.is_action_pressed("octave_%d" % o):
 			octave = o * 12
 		
@@ -44,6 +49,16 @@ func _input(event):
 		stop()
 	else:
 		note = key + octave + accidental
-		pitch_scale = pow(2, float(note-57)/12)
+#		if event.is_action(InputEventMouseMotion):
+#			event.
 		if !playing:
 			play()
+	
+	
+
+func _process(_delta: float):
+	mouse_x = get_viewport().get_mouse_position().x
+	viewport_size_x = get_viewport().size.x
+	pitch_scale = pow(2, float(note+((float(mouse_x)/(float(viewport_size_x)/pitch_bend_sensitivity))-pitch_bend_sensitivity/2)-57)/12)
+	print(pitch_scale)
+	

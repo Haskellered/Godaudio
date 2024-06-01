@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3eopiauab5iu"]
 
-[ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="1_1tsaf"]
+[ext_resource type="Script" path="res://audio_stream_player.gd" id="1_1tsaf"]
 [ext_resource type="Script" path="res://audio_stream_waveform.gd" id="1_30igw"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_qv0wd"]
