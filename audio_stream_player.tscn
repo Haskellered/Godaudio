@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3eopiauab5iu"]
+[gd_scene load_steps=4 format=3 uid="uid://d3eopiauab5iu"]
 
 [ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="1_1tsaf"]
-[ext_resource type="AudioStream" uid="uid://22aoxa8bpper" path="res://A4_sine.wav" id="1_pmyi3"]
+[ext_resource type="Script" path="res://audio_stream_waveform.gd" id="1_30igw"]
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_qv0wd"]
+format = 1
+script = ExtResource("1_30igw")
+wave_type = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_pmyi3")
-autoplay = true
+stream = SubResource("AudioStreamWAV_qv0wd")
 script = ExtResource("1_1tsaf")
